@@ -3,14 +3,13 @@ import "./style.css";
 
 function FriendCard(props) {
   return (
-    <div onClick={() => props.shuffleFriends(props.id)}>
     
-    <div className="card">
+    <div className="card" onClick={() => props.shuffleFriends(props.id)}>
       <div className="img-container">
         <img alt={props.name} src={props.image} />
       </div>
     </div>
-    </div>
+    
   );
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import FriendCard from "./components/FriendCard";
-import Wrapper from "./components/Wrapper";
 import friends from "./friends.json";
 import "./App.css";
 const shuffle = require(`shuffle-array`)
@@ -23,7 +22,7 @@ class App extends React.Component {
       if (this.state.count > this.state.highScore) {
         this.setState({ highScore: this.state.count })
       }
-      this.setState({ count: 0, array: [], message: "You lose" })
+      this.setState({ count: 0, array: [], message: "Wrong guess, game over!!" })
       document.getElementById("message").classList.add("red")
       setTimeout(() => {
         document.getElementById("message").classList.remove("red")
@@ -31,8 +30,8 @@ class App extends React.Component {
     } else {
       this.state.array.push(id)
       this.setState({ friends });
-      this.setState({ count: this.state.count + 1 });
       this.setState({ message: "you guessed correctly" })
+      this.setState({ count: this.state.count + 1 });
       document.getElementById("message").classList.add("green")
       setTimeout(() => {
         document.getElementById("message").classList.remove("green")
@@ -59,12 +58,12 @@ class App extends React.Component {
     return (
 
       <div>
-        <div id="header">
-          <p id="message">{this.state.message}</p>
+        <nav id="header">
           <p>Count : {this.state.count}</p>
+          <p id="message">{this.state.message}</p>
           <p>High Score: {this.state.highScore}</p>
-        </div>
-        <div id="friend-cards">
+        </nav>
+        <div id="friend-cards" className="container">
         {this.state.friends.map(friend => (
           <FriendCard
             id={friend.id}

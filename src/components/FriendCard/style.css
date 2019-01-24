@@ -39,7 +39,7 @@
 }
 .red{
   color: red;
-  font-size: 1.2em
+  font-size: 1.3em
 }
 
 #header{
@@ -50,10 +50,15 @@
   color: white;
   font-size: 1.6em;
   padding: 30px;
+  z-index: 1;
 }
 
 #friend-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
+}
+
+body {
+  background-image: url("https://alchetron.com/cdn/random-cartoons-ac716e8c-d08b-408b-be04-72fa0b8eef3-resize-750.jpeg");
 }
