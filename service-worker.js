@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ghaidan92.github.io/memory-game-ReactJS/precache-manifest.805ede84617eb71521fc406ee944a47a.js"
+  "/ghaidan92.github.io/memory-game-ReactJS/precache-manifest.9856f4c2223e09a87b96c50c1dcf44ba.js"
 );
 
 workbox.clientsClaim();
