@@ -9,55 +9,75 @@ class App extends React.Component {
   state = {
     friends,
     count: 0,
-    array: []
+    array: [],
+    highScore: 0,
+    message: "Click any image to begin"
   };
-  
+
   shuffleFriends = (id) => {
     // Filter this.state.friends for friends with an id not equal to the id being removed
     const friends = shuffle(this.state.friends)
     console.log(this.state.array)
-    
-    const array = this.state.array
-    if(id !== array.id){
-      console.log(id)
-      this.state.array.push(id)
-    }else {
-      alert("id exists")
-    }
-  
-    
-    // Set this.state.friends equal to the new friends array
-    this.setState({ friends });
-    this.setState({ count: this.state.count + 1 });
 
-    
+    if (this.state.array.includes(id)) {
+      if (this.state.count > this.state.highScore) {
+        this.setState({ highScore: this.state.count })
+      }
+      this.setState({ count: 0, array: [], message: "You lose" })
+      document.getElementById("message").classList.add("red")
+      setTimeout(() => {
+        document.getElementById("message").classList.remove("red")
+      }, 800);
+    } else {
+      this.state.array.push(id)
+      this.setState({ friends });
+      this.setState({ count: this.state.count + 1 });
+      this.setState({ message: "you guessed correctly" })
+      document.getElementById("message").classList.add("green")
+      setTimeout(() => {
+        document.getElementById("message").classList.remove("green")
+      }, 800);
+
+    }
+
+
+
+    // Set this.state.friends equal to the new friends array
+
+
+
   };
   scoreFriends = () => {
     // Filter this.state.friends for friends with an id not equal to the id being removed
-   
+
     // Set this.state.friends equal to the new friends array
     this.setState({ count: this.state.count + 1 });
-    
+
   };
 
   render() {
     return (
 
-      <Wrapper>
+      <div>
+        <div id="header">
+          <p id="message">{this.state.message}</p>
+          <p>Count : {this.state.count}</p>
+          <p>High Score: {this.state.highScore}</p>
+        </div>
+        <div id="friend-cards">
         {this.state.friends.map(friend => (
-        <FriendCard
-          id={friend.id}
-          key={friend.key}
-          image={friend.image}
-          count={this.state.count}
-          shuffleFriends={this.shuffleFriends}
-        
-        />
+          <FriendCard
+            id={friend.id}
+            key={friend.key}
+            image={friend.image}
+            shuffleFriends={this.shuffleFriends}
 
+          />
         ))}
-      </Wrapper>
+        </div>
+      </div>
     )
-    
+
   }
 }
 
